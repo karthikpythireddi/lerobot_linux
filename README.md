@@ -56,10 +56,31 @@ lerobot-train \
 
 
 🤖 Inference / Replay
-lerobot-replay \
+lerobot.replay \
   --robot.type=so101_follower \
-  --dataset.repo_id=karthikpythireddi93/make_a_sandwich \
-  --dataset.episode=0
+  --robot.port="$PORT_FOLLOWER" \
+  --robot.id=ss_follower \
+  --dataset.repo_id="$REPO_ID" \
+  --dataset.episode="$EP"
+
+lerobot-record \
+  --robot.type=so101_follower \
+  --robot.port="$PORT_FOLLOWER" \
+  --robot.id=ss_follower \
+  --teleop.type=so101_leader \
+  --teleop.port="$PORT_LEADER" \
+  --teleop.id=ss_leader \
+  --robot.cameras='{
+    "top":{"type":"opencv","index_or_path":"/dev/cam-top","width":640,"height":480,"fps":30},
+    "front":{"type":"opencv","index_or_path":"/dev/cam-front","width":640,"height":480,"fps":30}
+  }' \
+  --dataset.repo_id="$EVAL_REPO" \
+  --dataset.single_task="$TASK_NAME" \
+  --dataset.num_episodes=3 \
+  --dataset.episode_time_s=120 \
+  --policy.path="$POLICY_PATH" \
+  --policy.device=cuda:0
+
 
 📂 Folder Structure
 data/
