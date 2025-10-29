@@ -76,8 +76,13 @@ If you have an NVIDIA GPU and want to use GPU acceleration:
 # Check if you have an NVIDIA GPU
 lspci | grep -i nvidia
 
+# Check recommended drivers for your system
+ubuntu-drivers devices
+
 # Install NVIDIA drivers (if not already installed)
+# Use the recommended driver version, or a recent stable version like:
 sudo apt install nvidia-driver-535 -y
+# For newer systems, you may use: sudo apt install nvidia-driver-550 -y
 
 # Reboot after driver installation
 sudo reboot
@@ -108,8 +113,23 @@ pip install lerobot
 ```
 
 3. **For GPU support**, install PyTorch with CUDA:
+
+First, check your CUDA version if you have it installed:
 ```bash
+nvcc --version  # Check CUDA version
+nvidia-smi      # Check driver and CUDA compatibility
+```
+
+Then install PyTorch with matching CUDA support:
+```bash
+# For CUDA 11.8:
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# For CUDA 12.1:
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+# For CPU only (no GPU):
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 ```
 
 ### Method 2: Install from Source
@@ -282,4 +302,4 @@ If you find issues with these instructions or want to add support for additional
 
 ## License
 
-This guide is provided as-is for the LeRobot community. LeRobot itself is licensed under Apache 2.0 License. 
+This guide is provided as-is for the LeRobot community. LeRobot itself is licensed under the Apache 2.0 License. 
