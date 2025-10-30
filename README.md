@@ -4,6 +4,30 @@ This repository provides a complete Linux setup for running imitation learning w
  on SO-101 robots.
 Developed during the Hugging Face Embodied AI Hackathon, the goal was to teach a robot how to make a sandwich 🧠🤖.
 
+🧭 Table of Contents
+
+🚀 Quick Start
+
+⚙️ Setup on Linux
+
+🔌 Serial & Camera Configuration
+
+⚙️ Motor Setup & Calibration
+
+🎮 Teleoperation Test
+
+🎥 Data Collection
+
+🧠 Training
+
+🤖 Inference / Replay
+
+📂 Folder Structure
+
+🌐 Resources
+
+📜 License
+
 🚀 Quick Start
 git clone git@github.com:karthikpythireddi/lerobot_linux.git
 cd lerobot_linux
@@ -21,7 +45,7 @@ ls -l /dev/serial/by-id/
 export PORT_LEADER=/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AAF270236-if00
 export PORT_FOLLOWER=/dev/serial/by-id/usb-1a86_USB_Single_Serial_5A7A015883-if00
 
-# Optional: symbolic links for camera consistency
+# Optional symbolic links for camera consistency
 sudo ln -sf /dev/v4l/by-id/<TOP-CAM-ID>   /dev/cam-top
 sudo ln -sf /dev/v4l/by-id/<FRONT-CAM-ID> /dev/cam-front
 sudo ln -sf /dev/v4l/by-id/<SIDE-CAM-ID>  /dev/cam-side
@@ -46,7 +70,10 @@ lerobot-teleoperate \
   --display_data=true
 
 🎥 Data Collection
-🧩 Task	📝 Description	📦 Dataset ID
+
+🧩 Task Overview
+
+🧠 Task	📝 Description	📦 Dataset ID
 bread_place	Pick bread slice and place on plate	karthikpythireddi93/breakfast_sandiwch
 cucumber_place	Pick cucumber and place on bread	same
 carrot_place	Stack carrot slices	same
@@ -71,14 +98,11 @@ lerobot-record \
 
 
 🔁 Repeat for:
-cucumber_place, carrot_place, ketchup_place, and final_bread_place
+cucumber_place, carrot_place, ketchup_place, final_bread_place
 (change only --dataset.single_task and --dataset.tags)
 
 🎹 Keyboard Shortcuts
-
-→ Next episode
-
-← Re-record
+→ Next episode  ← Re-record
 
 🧠 Training
 lerobot-train \
